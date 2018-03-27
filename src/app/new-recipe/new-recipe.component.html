@@ -1,0 +1,19 @@
+<h2>New Tasty Treat</h2>
+<div>
+  <label>Enter Treat Name:</label>
+  <input #newTitle>
+  <label>Enter Recipe Directions:</label>
+  <input #newDirection1>
+  <input #newDirection2>
+</div>
+<div>
+  <label>Deliciousness Rating:</label>
+  <select #newDeliciousness>
+    <option [value]="1">Okay</option>
+    <option [value]="2">Gucci</option>
+    <option [value]="3">Delicioso</option>
+  </select>
+  <button (click)="submitForm(newTitle.value,  [newDirection1.value, newDirection2.value], newDeliciousness.value); newTitle.value=''; newDirection1.value=''; newDirection2.value='';">Add
+  </button>
+
+</div>

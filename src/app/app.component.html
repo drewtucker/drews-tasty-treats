@@ -17,27 +17,12 @@
 
   <img width="300" alt="Chef Logo" src="http://clipart-library.com/images/piqrERbrT.jpg">
 
-  <ul>
-    <p *ngFor="let currentRecipe of recipes"><strong>{{currentRecipe.title}}</strong> <li [class]="deliciousnessColor(currentRecipe)">{{currentRecipe.directions[0]}}</li> <li [class]="deliciousnessColor(currentRecipe)">{{currentRecipe.directions[1]}}</li> <button (click)="editRecipe(currentRecipe)" class="btn btn-success">Edit!</button></p>
-  </ul>
+  <app-recipe-list [childRecipeList]="masterRecipeList" (clickSender)="editRecipe($event)"></app-recipe-list>
 
+  <app-edit-recipe [childSelectedRecipe]="selectedRecipe" (clickedDone)="finishedEditing()"></app-edit-recipe>
 
-  <div *ngIf="selectedRecipe">
+  <app-new-recipe (sendRecipe)="addRecipe($event)"></app-new-recipe>
 
-  <h3>{{selectedRecipe.directions[0]}}</h3>
-  <h3>Edit Recipe</h3>
-  <label>Enter New Directions:</label>
-  <input [(ngModel)]="selectedRecipe.directions[0]">
-  <input [(ngModel)]="selectedRecipe.directions[1]">
-
-  <br>
-  <label>Enter Deliciousness Rating (1-3):</label>
-  <br>
-  <input type="radio" [(ngModel)]="selectedRecipe.deliciousness" [value]="1"> Okay <br>
-  <input type="radio" [(ngModel)]="selectedRecipe.deliciousness" [value]="2"> Gucci <br>
-  <input type="radio" [(ngModel)]="selectedRecipe.deliciousness" [value]="3"> Delicioso!
-  <button (click)="finishedEditing()">Done</button>
-</div>
 <hr>
 <button (click)="changeName()">Change Name</button>
 

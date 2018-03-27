@@ -1,0 +1,14 @@
+<select (change)="onChange($event.target.value)">
+  <option value="allRecipes">All Recipes</option>
+  <option value="eatenRecipes">Eaten Recipes</option>
+  <option value="uneatenRecipes" selected="selected">Uneaten Recipes</option>
+</select>
+
+
+<ul>
+  <p *ngFor="let currentRecipe of childRecipeList | eatenness:filterByEatenness"><strong>{{currentRecipe.title}}</strong> <li [class]="deliciousnessColor(currentRecipe)">{{currentRecipe.directions[0]}}</li> <li [class]="deliciousnessColor(currentRecipe)">{{currentRecipe.directions[1]}}</li>
+  <input *ngIf="currentRecipe.eaten === true" type="checkbox" checked (click)="toggleEaten(currentRecipe, false)"/>
+  <input *ngIf="currentRecipe.eaten === false" type="checkbox" (click)="toggleEaten(currentRecipe, true)"/>
+  <button (click)="editButtonClicked(currentRecipe)" class="btn btn-success">Edit!</button>
+  </p>
+</ul>
